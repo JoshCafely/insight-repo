@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life in Rural Asia During the Industrial Revolution</title>
+    <meta name="description" content="Interactive educational webpage exploring ordinary life in rural Asia during the 18th-19th centuries, when most of the world remained agricultural.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #8B4513 0%, #DEB887 50%, #F4A460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: #2F1B14;
+            margin-bottom: 40px;
+            animation: fadeInDown 2s ease-out;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        /* Research Summary Section */
+        .research-section {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideInLeft 2s ease-out;
+        }
+        
+        .research-section h2 {
+            color: #8B4513;
+            border-bottom: 3px solid #DEB887;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .research-summary {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 5px solid #8B4513;
+            margin-bottom: 25px;
+            border-radius: 5px;
+        }
+        
+        .commentary {
+            text-align: justify;
+        }
+        
+        .commentary p {
+            margin-bottom: 15px;
+        }
+        
+        .village-scene {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 30%, #8FBC8F 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideInUp 2s ease-out;
+        }
+        
+        .mountain {
+            position: absolute;
+            bottom: 200px;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 150px solid #696969;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .mountain:nth-child(1) { 
+            left: 50px; 
+            animation-delay: 0s; 
+        }
+        
+        .mountain:nth-child(2) { 
+            left: 150px; 
+            animation-delay: 1s; 
+            border-bottom-color: #778899; 
+        }
+        
+        .mountain:nth-child(3) { 
+            right: 100px; 
+            animation-delay: 2s; 
+            border-bottom-color: #708090; 
+        }
+        
+        .field {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background: repeating-linear-gradient(
+                90deg,
+                #228B22 0px,
+                #228B22 20px,
+                #32CD32 20px,
+                #32CD32 40px
+            );
+            animation: wave 4s ease-in-out infinite;
+        }
+        
+        .hut {
+            position: absolute;
+            bottom: 150px;
+            left: 300px;
+            width: 80px;
+            height: 50px;
+            background: #8B4513;
+            border-radius: 5px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .hut::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 30px solid #654321;
+        }
+        
+        .farmer {
+            position: absolute;
+            bottom: 120px;
+            right: 200px;
+            width: 20px;
+            height: 40px;
+            background: #4B0082;
+            border-radius: 10px 10px 0 0;
+            animation: work 2s ease-in-out infinite;
+        }
+        
+        .farmer::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            background: #FDBCB4;
+            border-radius: 50%;
+        }
+        
+        .sun {
+            position: absolute;
+            top: 50px;
+            right: 80px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            box-shadow: 0 0 30px #FFD700;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.8;
+            animation: drift 15s ease-in-out infinite;
+        }
+        
+        .cloud:nth-child(7) {
+            width: 80px;
+            height: 40px;
+            top: 80px;
+            left: 200px;
+            animation-delay: 0s;
+        }
+        
+        .cloud:nth-child(8) {
+            width: 60px;
+            height: 30px;
+            top: 120px;
+            right: 300px;
+            animation-delay: 3s;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .card h3 {
+            color: #8B4513;
+            border-bottom: 2px solid #DEB887;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .card li:hover {
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .timeline {
+            margin-top: 50px;
+            text-align: center;
+        }
+        
+        .timeline h2 {
+            color: #2F1B14;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .timeline-item {
+            background: rgba(255,255,255,0.9);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: slideInLeft 2s ease-out;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .footer p {
+            margin: 10px 0;
+            color: #666;
+        }
+        
+        .github-link {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: #555;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(100px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.1); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes work {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 { 
+                font-size: 2em; 
+            }
+            
+            .village-scene { 
+                height: 300px; 
+            }
+            
+            .info-cards { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .research-section { 
+                padding: 20px; 
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .village-scene {
+                height: 250px;
+            }
+            
+            .mountain {
+                border-left-width: 60px;
+                border-right-width: 60px;
+                border-bottom-width: 90px;
+            }
+            
+            .hut {
+                width: 50px;
+                height: 30px;
+                left: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Life in Rural Asia During the Industrial Revolution</h1>
+            <p>18th-19th Century: When Most of the World Remained Agricultural</p>
+        </div>
+        
+        <!-- Historical Illustration -->
+        <div class="illustration-section">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 40px; animation: slideInUp 2s ease-out;">
+              <defs>
+                <!-- Sky gradient -->
+                <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+                  <stop offset="60%" style="stop-color:#E0F6FF;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#F0F8FF;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- Mountain gradient -->
+                <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#5D4E37;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- Field gradient -->
+                <linearGradient id="fieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#9ACD32;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#556B2F;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- Water gradient -->
+                <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#4682B4;stop-opacity:0.7" />
+                  <stop offset="100%" style="stop-color:#2F4F4F;stop-opacity:0.9" />
+                </linearGradient>
+              </defs>
+              
+              <!-- Sky -->
+              <rect width="800" height="400" fill="url(#skyGradient)"/>
+              
+              <!-- Sun -->
+              <circle cx="650" cy="100" r="40" fill="#FFD700" opacity="0.9"/>
+              <circle cx="650" cy="100" r="45" fill="#FFA500" opacity="0.3"/>
+              
+              <!-- Clouds -->
+              <ellipse cx="200" cy="120" rx="30" ry="15" fill="white" opacity="0.8"/>
+              <ellipse cx="220" cy="115" rx="25" ry="12" fill="white" opacity="0.8"/>
+              <ellipse cx="500" cy="80" rx="35" ry="18" fill="white" opacity="0.7"/>
+              
+              <!-- Distant mountains -->
+              <polygon points="0,280 150,200 300,240 450,180 600,220 800,200 800,400 0,400" fill="url(#mountainGradient)" opacity="0.6"/>
+              
+              <!-- Rice terraces -->
+              <rect x="0" y="320" width="800" height="20" fill="#7CFC00" opacity="0.8"/>
+              <rect x="0" y="340" width="800" height="20" fill="#6B8E23" opacity="0.8"/>
+              <rect x="0" y="360" width="800" height="20" fill="#7CFC00" opacity="0.8"/>
+              <rect x="0" y="380" width="800" height="20" fill="#6B8E23" opacity="0.8"/>
+              
+              <!-- Water in rice fields -->
+              <rect x="0" y="320" width="800" height="5" fill="url(#waterGradient)"/>
+              <rect x="0" y="340" width="800" height="5" fill="url(#waterGradient)"/>
+              <rect x="0" y="360" width="800" height="5" fill="url(#waterGradient)"/>
+              <rect x="0" y="380" width="800" height="5" fill="url(#waterGradient)"/>
+              
+              <!-- Traditional house 1 -->
+              <rect x="120" y="280" width="80" height="50" fill="#8B4513"/>
+              <polygon points="100,280 160,240 220,280" fill="#654321"/>
+              <rect x="140" y="300" width="15" height="30" fill="#2F1B14"/>
+              <rect x="175" y="290" width="20" height="15" fill="#4169E1" opacity="0.3"/>
+              
+              <!-- Traditional house 2 -->
+              <rect x="450" y="290" width="70" height="45" fill="#A0522D"/>
+              <polygon points="435,290 485,255 535,290" fill="#8B4513"/>
+              <rect x="465" y="305" width="12" height="30" fill="#2F1B14"/>
+              
+              <!-- Farmer 1 (working in field) -->
+              <ellipse cx="300" cy="395" rx="8" ry="3" fill="#8B4513" opacity="0.3"/>
+              <rect x="295" y="375" width="10" height="20" fill="#4B0082"/>
+              <circle cx="300" cy="370" r="5" fill="#FDBCB4"/>
+              <rect x="290" y="378" width="20" height="3" fill="#8B4513"/>
+              <rect x="285" y="380" width="8" height="2" fill="#2F4F4F"/>
+              
+              <!-- Farmer 2 (carrying water) -->
+              <ellipse cx="180" cy="355" rx="8" ry="3" fill="#8B4513" opacity="0.3"/>
+              <rect x="175" y="335" width="10" height="20" fill="#800080"/>
+              <circle cx="180" cy="330" r="5" fill="#FDBCB4"/>
+              <rect x="170" y="338" width="25" height="2" fill="#8B4513"/>
+              <circle cx="168" cy="338" r="3" fill="#696969"/>
+              <circle cx="197" cy="338" r="3" fill="#696969"/>
+              
+              <!-- Woman with basket -->
+              <ellipse cx="380" cy="365" rx="8" ry="3" fill="#8B4513" opacity="0.3"/>
+              <rect x="375" y="345" width="10" height="20" fill="#8B008B"/>
+              <circle cx="380" cy="340" r="5" fill="#FDBCB4"/>
+              <rect x="370" y="340" width="15" height="8" fill="#8B4513"/>
+              
+              <!-- Children playing -->
+              <circle cx="250" cy="350" r="3" fill="#FDBCB4"/>
+              <rect x="247" y="350" width="6" height="12" fill="#DC143C"/>
+              <circle cx="270" cy="352" r="3" fill="#FDBCB4"/>
+              <rect x="267" y="352" width="6" height="12" fill="#32CD32"/>
+              
+              <!-- Water buffalo -->
+              <ellipse cx="500" cy="375" rx="25" ry="12" fill="#2F2F2F"/>
+              <circle cx="485" cy="370" r="8" fill="#2F2F2F"/>
+              <rect x="477" y="365" width="4" height="8" fill="#2F2F2F"/>
+              <rect x="493" y="365" width="4" height="8" fill="#2F2F2F"/>
+              <rect x="510" y="370" width="4" height="10" fill="#2F2F2F"/>
+              <rect x="520" y="370" width="4" height="10" fill="#2F2F2F"/>
+              
+              <!-- Rice plants scattered -->
+              <g id="ricePlant">
+                <rect x="0" y="0" width="2" height="15" fill="#228B22"/>
+                <ellipse cx="1" cy="-2" rx="3" ry="2" fill="#9ACD32"/>
+              </g>
+              
+              <!-- Multiple rice plants -->
+              <use href="#ricePlant" transform="translate(150,390)"/>
+              <use href="#ricePlant" transform="translate(200,395)"/>
+              <use href="#ricePlant" transform="translate(350,390)"/>
+              <use href="#ricePlant" transform="translate(420,395)"/>
+              <use href="#ricePlant" transform="translate(550,392)"/>
+              <use href="#ricePlant" transform="translate(680,390)"/>
+              
+              <!-- Ox cart -->
+              <rect x="600" y="350" width="40" height="15" fill="#8B4513"/>
+              <circle cx="610" cy="370" r="8" fill="#654321"/>
+              <circle cx="630" cy="370" r="8" fill="#654321"/>
+              <rect x="590" y="345" width="15" height="20" fill="#A0522D"/>
+              <circle cx="597" cy="340" r="3" fill="#2F2F2F"/>
+              
+              <!-- Bamboo trees -->
+              <rect x="50" y="250" width="8" height="80" fill="#228B22"/>
+              <rect x="45" y="240" width="6" height="70" fill="#32CD32"/>
+              <rect x="55" y="245" width="5" height="75" fill="#228B22"/>
+              
+              <rect x="700" y="260" width="8" height="70" fill="#228B22"/>
+              <rect x="695" y="250" width="6" height="60" fill="#32CD32"/>
+              <rect x="705" y="255" width="5" height="65" fill="#228B22"/>
+              
+              <!-- Birds in sky -->
+              <path d="M 100 150 Q 105 145 110 150" stroke="#2F2F2F" stroke-width="2" fill="none"/>
+              <path d="M 115 145 Q 120 140 125 145" stroke="#2F2F2F" stroke-width="2" fill="none"/>
+              
+              <!-- Ground -->
+              <rect x="0" y="400" width="800" height="200" fill="url(#fieldGradient)"/>
+              
+              <!-- Dirt path -->
+              <ellipse cx="400" cy="450" rx="150" ry="30" fill="#D2B48C" opacity="0.6"/>
+              
+              <!-- Small rocks/stones -->
+              <circle cx="320" cy="420" r="3" fill="#696969"/>
+              <circle cx="480" cy="430" r="2" fill="#A9A9A9"/>
+              <circle cx="520" cy="415" r="4" fill="#696969"/>
+              
+              <!-- Text overlay -->
+              <rect x="0" y="0" width="800" height="40" fill="rgba(139,69,19,0.8)"/>
+              <text x="400" y="25" font-family="serif" font-size="18" fill="white" text-anchor="middle" font-weight="bold">Rural Asian Life During the Industrial Revolution (18th-19th Century)</text>
+              
+              <!-- Legend -->
+              <rect x="20" y="520" width="200" height="70" fill="rgba(255,255,255,0.9)" stroke="#8B4513" stroke-width="2" rx="5"/>
+              <text x="30" y="540" font-family="serif" font-size="12" fill="#2F1B14" font-weight="bold">Daily Life Elements:</text>
+              <text x="30" y="555" font-family="serif" font-size="10" fill="#2F1B14">• Rice terraces & farming</text>
+              <text x="30" y="568" font-family="serif" font-size="10" fill="#2F1B14">• Traditional wooden houses</text>
+              <text x="30" y="581" font-family="serif" font-size="10" fill="#2F1B14">• Community work & family life</text>
+            </svg>
+        </div>
+
+        <!-- Research Summary Section -->
+        <div class="research-section">
+            <h2>Research Summary</h2>
+            <div class="research-summary">
+                <p>Most Asian countries, except Japan, were latecomers to the Industrial Revolution compared to the United States and Europe. While treaty ports along China's coast were feeling the direct impact of foreign demands during the nineteenth and early twentieth centuries, most people in China were rural people, living in towns and villages. Farm plots were very small, averaging less than two acres per family, and peasants had little access to new technology, capital, or cheap transport. The Qing dynasty (1644–1912) experienced rapid population growth from well over 100 million in the late 17th century to 430 million in the mid-19th century. Life was generally harsh despite farmers owning some land and having sources of income apart from farm work, such as handicrafts. Traditional Asian societies were predominantly agricultural, with 83 percent of the Chinese workforce employed in agriculture in 1952.</p>
+            </div>
+            
+            <h2>Commentary: Could You Adapt to This Lifestyle?</h2>
+            <div class="commentary">
+                <p>Living as an ordinary person in Asia during the Industrial Revolution would have been profoundly challenging, rooted in subsistence agriculture and marked by daily survival struggles. Imagine waking before dawn in a modest dwelling made of wood or stone, with your entire world revolving around a plot of land smaller than a modern suburban yard. Your day would begin with tending to crops—rice, wheat, or vegetables—using basic hand tools, as mechanization hadn't reached most Asian farming communities.</p>
+                
+                <p>The rhythm of life followed the seasons religiously. Spring meant planting, summer required constant weeding and pest control, autumn brought the crucial harvest that determined your family's fate for the year, and winter was spent repairing tools and preparing for the next cycle. Women would supplement farming with handicrafts like silk production or textile work, while men handled the physically demanding field labor.</p>
+                
+                <p>Family structures were hierarchical and patriarchal, with multiple generations living together out of necessity. Education was a luxury few could afford, and most knowledge was passed down through oral tradition. Medical care was limited to traditional remedies and herbal treatments. Transportation meant walking or, for the fortunate, using animals.</p>
+                
+                <p>Could I adapt to this lifestyle? Honestly, the transition would be brutal. The physical demands alone—working from sunrise to sunset with basic tools—would challenge anyone accustomed to modern convenience. The uncertainty of food security, where one bad harvest could mean starvation, creates a stress level modern life rarely imposes. The lack of individual freedoms, particularly for women who had limited rights and choices, would be suffocating by today's standards.</p>
+                
+                <p>However, there's something deeply grounding about this life's simplicity and connection to natural cycles. The strong community bonds and multi-generational wisdom sharing offer social support systems we've largely lost. While I might eventually adapt physically, the mental adjustment to accepting powerlessness over so many life circumstances would be the greatest challenge.</p>
+            </div>
+        </div>
+        
+        <!-- Interactive Village Scene -->
+        <div class="village-scene">
+            <div class="mountain"></div>
+            <div class="mountain"></div>
+            <div class="mountain"></div>
+            <div class="sun"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="hut"></div>
+            <div class="farmer"></div>
+            <div class="field"></div>
+        </div>
+        
+        <!-- Information Cards -->
+        <div class="info-cards">
+            <div class="card">
+                <h3>Daily Life Realities</h3>
+                <ul>
+                    <li>🌅 Wake before dawn for farm work</li>
+                    <li>🌾 Small plots averaging under 2 acres per family</li>
+                    <li>🔧 Basic hand tools, no mechanization</li>
+                    <li>🏠 Simple wooden/stone dwellings</li>
+                    <li>👨‍👩‍👧‍👦 Multi-generational households</li>
+                    <li>🥬 Subsistence farming + small handicrafts</li>
+                    <li>🚶‍♂️ Walking or animals for transportation</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Seasonal Survival Cycle</h3>
+                <ul>
+                    <li>🌱 Spring: Planting & field preparation</li>
+                    <li>☀️ Summer: Weeding & pest control</li>
+                    <li>🍂 Autumn: Critical harvest season</li>
+                    <li>❄️ Winter: Tool repair & preparation</li>
+                    <li>🙏 Weather dependency for survival</li>
+                    <li>💰 One bad harvest = potential starvation</li>
+                    <li>📚 Knowledge passed through oral tradition</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Social Structure</h3>
+                <ul>
+                    <li>👨‍🦳 Patriarchal family systems</li>
+                    <li>👩 Limited rights for women</li>
+                    <li>🏘️ Strong village community bonds</li>
+                    <li>📖 Literacy rare, education limited</li>
+                    <li>🌿 Traditional medicine only</li>
+                    <li>⛪ Spiritual/religious community centers</li>
+                    <li>🤝 Mutual aid during hardships</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Economic Challenges</h3>
+                <ul>
+                    <li>💸 No access to capital or credit</li>
+                    <li>🚂 Limited transport to markets</li>
+                    <li>📈 Vulnerable to global market forces</li>
+                    <li>🏭 Industrial Revolution bypassed most of Asia</li>
+                    <li>💼 83% of Chinese workforce in agriculture (1952)</li>
+                    <li>⚖️ Heavy taxation and government levies</li>
+                    <li>🌍 International competition affecting local products</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Adaptation Timeline -->
+        <div class="timeline">
+            <h2>Could You Adapt to This Lifestyle?</h2>
+            <div class="timeline-item">
+                <h3>Physical Challenges</h3>
+                <p>The transition from modern convenience to dawn-to-dusk manual labor would be brutal. Using basic tools for farming, carrying water by hand, and the constant physical demands would challenge anyone accustomed to modern life.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Food Security Stress</h3>
+                <p>The anxiety of one bad harvest potentially meaning starvation creates a stress level modern life rarely imposes. The uncertainty and lack of control over survival would be mentally exhausting.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Social Limitations</h3>
+                <p>Limited personal freedoms, especially for women, rigid social hierarchies, and lack of individual choice in life paths would feel suffocating by today's standards.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Potential Benefits</h3>
+                <p>However, the deep connection to natural cycles, strong community bonds, multi-generational wisdom, and life's simplicity offer social support systems we've largely lost in modern society.</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h3>About This Project</h3>
+            <p>This interactive page explores ordinary life in rural Asia during the Industrial Revolution (18th-19th centuries).</p>
+            <p>Research conducted using web sources and academic materials to understand daily life, social structures, and economic challenges.</p>
+            <p>Created as an educational resource to visualize historical living conditions and promote understanding of pre-industrial life.</p>
+            <a href="https://github.com/yourusername/rural-asia-industrial-revolution" class="github-link">View on GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
